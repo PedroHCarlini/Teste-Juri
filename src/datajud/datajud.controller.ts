@@ -7,8 +7,7 @@ export class DatajudController {
 
   @Get()
   searchProcess(@Query() query: any): any {
-    console.log('Query Params:', query);
-
-    return this.datajudUsecase.handler(123);
+    const processNumber = query.processNumber;
+    return this.datajudUsecase.handler(processNumber);
   }
 }

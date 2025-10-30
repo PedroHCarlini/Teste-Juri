@@ -1,176 +1,179 @@
-// import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-// import { Document, Types } from 'mongoose';
+import { Entity, ObjectIdColumn, ObjectId, Column } from 'typeorm';
 
-// export class Total {
-//   @Prop()
-//   value: number;
+export class Total {
+  @Column()
+  value: number;
 
-//   @Prop()
-//   relation: string;
-// }
+  @Column()
+  relation: string;
+}
 
-// export class Shards {
-//   @Prop()
-//   total: number;
+export class Shards {
+  @Column()
+  total: number;
 
-//   @Prop()
-//   successful: number;
+  @Column()
+  successful: number;
 
-//   @Prop()
-//   skipped: number;
+  @Column()
+  skipped: number;
 
-//   @Prop()
-//   failed: number;
-// }
+  @Column()
+  failed: number;
+}
+export class Classe {
+  @Column()
+  codigo: number;
 
-// export class Assunto {
-//   @Prop()
-//   codigo!: number;
+  @Column()
+  nome: string;
+}
 
-//   @Prop()
-//   nome!: string;
-// }
+export class Sistema {
+  @Column()
+  codigo: number;
 
-// export class OrgaoJulgador {
-//   @Prop()
-//   codigoMunicipioIBGE!: number;
+  @Column()
+  nome: string;
+}
 
-//   @Prop()
-//   codigo!: number;
+export class Formato {
+  @Column()
+  codigo: number;
 
-//   @Prop()
-//   nome!: string;
-// }
+  @Column()
+  nome: string;
+}
 
-// export class ComplementoTabelado {
-//   @Prop()
-//   codigo!: number;
+export class Movimento {
+  @Column('simple-json', { nullable: true })
+  complementosTabelados?: ComplementoTabelado[];
 
-//   @Prop()
-//   valor!: number;
+  @Column()
+  codigo: number;
 
-//   @Prop()
-//   nome!: string;
+  @Column()
+  nome: string;
 
-//   @Prop()
-//   descricao!: string;
-// }
+  @Column()
+  dataHora: Date;
+}
 
-// export class Movimento {
-//   @Prop({ type: () => [ComplementoTabelado] })
-//   complementosTabelados?: ComplementoTabelado[];
+export class ComplementoTabelado {
+  @Column()
+  codigo: number;
 
-//   @Prop()
-//   codigo!: number;
+  @Column()
+  valor: number;
 
-//   @Prop()
-//   nome!: string;
+  @Column()
+  nome: string;
 
-//   @Prop()
-//   dataHora!: Date;
-// }
+  @Column()
+  descricao: string;
+}
 
-// export class Classe {
-//   @Prop()
-//   codigo: number;
+export class Assunto {
+  @Column()
+  codigo: number;
 
-//   @Prop()
-//   nome: string;
-// }
+  @Column()
+  nome: string;
+}
 
-// export class Sistema {
-//   @Prop()
-//   codigo: number;
+export class OrgaoJulgador {
+  @Column()
+  codigoMunicipioIBGE: number;
 
-//   @Prop()
-//   nome: string;
-// }
+  @Column()
+  codigo: number;
 
-// export class Formato {
-//   @Prop()
-//   codigo: number;
+  @Column()
+  nome: string;
+}
+export class Source {
+  @Column(() => Classe)
+  classe: Classe;
 
-//   @Prop()
-//   nome: string;
-// }
+  @Column(() => Sistema)
+  sistema: Sistema;
 
-// export class Source {
-//   @Prop({ type: Classe })
-//   classe: Classe;
+  @Column(() => Formato)
+  formato: Formato;
 
-//   @Prop({ type: Sistema })
-//   sistema: Sistema;
+  @Column('simple-json', { nullable: true })
+  movimentos: Movimento[];
 
-//   @Prop({ type: Formato })
-//   formato: Formato;
+  @Column('simple-json', { nullable: true })
+  assuntos: Assunto[];
 
-//   @Prop({ type: () => [Movimento] })
-//   movimentos!: Movimento[];
+  @Column(() => OrgaoJulgador)
+  orgaoJulgador: OrgaoJulgador;
 
-//   @Prop({ type: [Assunto], default: [] })
-//   assuntos!: Assunto[];
+  @Column()
+  numeroProcesso: string;
 
-//   @Prop({ type: OrgaoJulgador })
-//   orgaoJulgador: OrgaoJulgador;
+  @Column()
+  tribunal: string;
 
-//   @Prop()
-//   numeroProcesso: string;
+  @Column()
+  dataHoraUltimaAtualizacao: Date;
 
-//   @Prop()
-//   tribunal: string;
+  @Column()
+  grau: string;
 
-//   @Prop()
-//   dataHoraUltimaAtualizacao: Date;
+  @Column()
+  timestamp: Date;
 
-//   @Prop()
-//   grau: string;
+  @Column()
+  dataAjuizamento: Date;
 
-//   @Prop()
-//   '@timestamp': Date;
+  @Column()
+  id: string;
 
-//   @Prop()
-//   dataAjuizamento: Date;
+  @Column()
+  nivelSigilo: number;
+}
 
-//   @Prop()
-//   id: string;
+export class HitsArray {
+  @Column()
+  _id: string;
 
-//   @Prop()
-//   nivelSigilo: number;
-// }
+  @Column()
+  _index: string;
 
-// export class HitsArray {
-//   @Prop()
-//   _id: string;
+  @Column()
+  _score: number;
 
-//   @Prop()
-//   _index: string;
+  @Column(() => Source)
+  _source: Source;
+}
 
-//   @Prop()
-//   _score: number;
+export class Hits {
+  @Column(() => Total)
+  total: Total;
 
-//   @Prop({ type: Source })
-//   _source: Source;
-// }
+  @Column()
+  max_score: number;
 
-// export class Hits {
-//   @Prop({ type: Total })
-//   total: Total;
+  @Column('simple-json', { nullable: true })
+  hits?: HitsArray[];
+}
 
-//   @Prop()
-//   max_score: number;
-// }
+@Entity('processes')
+export class ProcessEntity {
+  @ObjectIdColumn()
+  _id: ObjectId;
 
-// @Schema({ collection: 'processes' })
-// export class ProcessEntity extends Document {
-//   @Prop()
-//   took: number;
+  @Column()
+  took: number;
 
-//   @Prop()
-//   timed_out: boolean;
+  @Column()
+  timed_out: boolean;
 
-//   @Prop({ type: Shards })
-//   _shards: Shards;
+  @Column(() => Shards)
+  _shards: Shards;
 
-//   @Prop({ type: Hits })
-//   hits: Hits;
-// }
+  @Column(() => Hits)
+  hits: Hits;
+}

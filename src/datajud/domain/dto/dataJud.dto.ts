@@ -1,3 +1,3 @@
-// export class DataJudDTO {
-//   numeroProcesso: string;
-// }
+export class DataJudDTO {
+  numeroProcesso: string;
+}
