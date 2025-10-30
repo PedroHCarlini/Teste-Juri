@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatajudModule } from './datajud/datajud.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProcessEntity } from './entities/process.entity';
+import { ProcessEntity } from './datajud/infra/models/entities/process.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({

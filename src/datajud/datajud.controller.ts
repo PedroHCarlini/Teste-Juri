@@ -1,19 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
-import { DatajudService } from './datajud.service';
+import { Controller, Get, Query } from '@nestjs/common';
+import { DatajudUsecase } from './usecases/datajud.usecase';
 
-@Controller('a')
+@Controller('search-process')
 export class DatajudController {
-  constructor(private readonly datajudService: DatajudService) {}
+  constructor(private readonly datajudUsecase: DatajudUsecase) {}
 
   @Get()
-  searchProcess(): any {
-    return this.datajudService.getHello({
-      query: {
-        match: {
-          numeroProcesso: '00105765620225150093',
-        },
-      },
-      size: 10,
-    });
+  searchProcess(@Query() query: any): any {
+    console.log('Query Params:', query);
+
+    return this.datajudUsecase.handler(123);
   }
 }
