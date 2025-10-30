@@ -1,13 +1,17 @@
-import { Inject, Injectable } from '@nestjs/common';
 import axios from 'axios';
-import type { IDataJudRepository } from '../domain/repositories/dataJud.interface.repository';
+
+import { Inject, Injectable } from '@nestjs/common';
 import { ProcessEntity } from '../infra/models/entities/process.entity';
+import { KafkaProducerService } from 'src/kafka/kafka-producer.service';
+
+import type { IDataJudRepository } from '../domain/repositories/dataJud.interface.repository';
 
 @Injectable()
 export class DatajudUsecase {
   constructor(
     @Inject('IDataJudRepository')
     private readonly dataJudRepository: IDataJudRepository,
+    private readonly kafkaProducer: KafkaProducerService,
   ) {}
 
   async handler(processNumber: string): Promise<ProcessEntity[] | string> {
@@ -34,7 +38,7 @@ export class DatajudUsecase {
         {
           query: {
             match: {
-              numeroProcesso: '00105765620225150093',
+              numeroProcesso: processNumber,
             },
           },
           size: 10,
@@ -42,7 +46,8 @@ export class DatajudUsecase {
         { headers: { Authorization: apiKey } },
       );
 
-      console.log(res.data.hits);
+      const message = res.data;
+      await this.kafkaProducer.sendMessage('datajud-queue', message);
 
       return 'Hello World!';
     } catch (error) {
