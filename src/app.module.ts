@@ -1,3 +1,6 @@
+import crypto from 'crypto';
+(global as any).crypto = crypto;
+
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';

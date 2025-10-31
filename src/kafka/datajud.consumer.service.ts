@@ -11,10 +11,11 @@ export class DatajudConsumer {
     private readonly dataJudRepository: IDataJudRepository,
   ) {}
 
-  @MessagePattern('datajud-response')
+  @MessagePattern('datajud-queue')
   async consume(@Payload() message: any) {
-    this.logger.log('Menssage recived from Kafka:');
-    this.logger.debug(JSON.stringify(message.value, null, 2));
+    this.logger.log('Menssage recived from Kafka: ', message);
+
+    // this.logger.debug(JSON.stringify(message.value, null, 2));
 
     const res = await this.dataJudRepository.create(message.value);
     this.logger.log('Data saved to database:');
