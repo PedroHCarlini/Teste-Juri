@@ -4,18 +4,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProcessEntity } from 'src/datajud/infra/models/entities/process.entity';
 import { DatajudUsecase } from './usecases/datajud.usecase';
 import { DataJudRepositoryMongo } from './infra/models/repositories/dataJud.repository';
-import { KafkaProducerService } from 'src/kafka/kafka-producer.service';
+import { DataJudProducerService } from 'src/kafka/datajud.producer.service';
+import { DatajudConsumer } from 'src/kafka/datajud.consumer.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProcessEntity])],
-  controllers: [DatajudController],
+  controllers: [DatajudController, DatajudConsumer],
   providers: [
     {
       provide: 'IDataJudRepository',
       useClass: DataJudRepositoryMongo,
     },
     DatajudUsecase,
-    KafkaProducerService,
+    DataJudProducerService,
   ],
   exports: ['IDataJudRepository', DatajudUsecase],
 })
