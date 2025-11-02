@@ -15,6 +15,10 @@ async function bootstrap() {
       consumer: {
         groupId: 'datajud-consumer-group',
       },
+      producer: {
+        allowAutoTopicCreation: true,
+        createPartitionedTopic: false,
+      },
     },
   });
 

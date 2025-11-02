@@ -26,15 +26,11 @@ export class DatajudConsumer {
 
       const process = new ProcessEntity(message);
 
-      const res = await this.dataJudRepository.create(process);
-      this.logger.log('Data saved to database:', res);
-
-      JSON.parse(message.value); // Forçando um erro para testar o Dead Letter Queue
+      await this.dataJudRepository.create(process);
+      this.logger.log('Data saved to database');
     } catch (error) {
       this.logger.error('Error processing Kafka message', error);
-
-      const errorMessage =
-        error instanceof Error ? error.message : JSON.stringify(error);
+      const errorMessage = JSON.stringify(error);
 
       const deadLetter = new DeadLetterEntity({
         error: errorMessage,
@@ -42,7 +38,6 @@ export class DatajudConsumer {
       });
 
       await this.deadLetterRepository.create(deadLetter);
-      throw error;
     }
   }
 }
