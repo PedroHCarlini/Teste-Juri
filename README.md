@@ -20,8 +20,8 @@ Antes de executar, certifique-se de ter os seguintes itens instalados:
 1. Clone o repositório:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DO_PROJETO>
+git clone https://github.com/PedroHCarlini/Teste-Juri
+cd Teste-Juri
 ```
 
 2. Instale as dependências:
