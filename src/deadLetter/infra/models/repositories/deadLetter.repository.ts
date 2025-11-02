@@ -1,7 +1,8 @@
+import { MongoRepository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { IDeadLetterRepository } from 'src/deadLetter/domain/repositories/deadLetter.interface.repository';
-import { MongoRepository } from 'typeorm';
 import { DeadLetterEntity } from '../entities/deadLetter.entity';
 
 @Injectable()

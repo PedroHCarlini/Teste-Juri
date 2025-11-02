@@ -1,8 +1,9 @@
+import { MongoRepository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IDataJudRepository } from 'src/datajud/domain/repositories/dataJud.interface.repository';
+
 import { ProcessEntity } from 'src/datajud/infra/models/entities/process.entity';
-import { MongoRepository } from 'typeorm';
+import { IDataJudRepository } from 'src/datajud/domain/repositories/dataJud.interface.repository';
 
 @Injectable()
 export class DataJudRepositoryMongo implements IDataJudRepository {

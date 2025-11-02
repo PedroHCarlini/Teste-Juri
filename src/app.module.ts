@@ -2,13 +2,14 @@ import crypto from 'crypto';
 (global as any).crypto = crypto;
 
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { DatajudModule } from './datajud/datajud.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProcessEntity } from './datajud/infra/models/entities/process.entity';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { DatajudModule } from './datajud/datajud.module';
+import { ProcessEntity } from './datajud/infra/models/entities/process.entity';
 
 @Module({
   imports: [

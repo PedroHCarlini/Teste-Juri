@@ -1,6 +1,6 @@
 import axios from 'axios';
-
 import { Inject, Injectable } from '@nestjs/common';
+
 import { ProcessEntity } from '../infra/models/entities/process.entity';
 import { DataJudProducerService } from 'src/kafka/datajud.producer.service';
 
