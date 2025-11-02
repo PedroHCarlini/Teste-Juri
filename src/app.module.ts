@@ -7,9 +7,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { AppService } from './app.service';
+import { AuthModule } from './models/auth/auth.module';
 import { AppController } from './app.controller';
-import { DatajudModule } from './datajud/datajud.module';
-import { ProcessEntity } from './datajud/infra/models/entities/process.entity';
+import { DatajudModule } from './models/datajud/datajud.module';
+import { ProcessEntity } from './models/datajud/infra/models/entities/process.entity';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { ProcessEntity } from './datajud/infra/models/entities/process.entity';
     }),
 
     DatajudModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

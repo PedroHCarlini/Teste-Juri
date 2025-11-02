@@ -1,11 +1,11 @@
 import { Controller, Inject, Logger } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 
-import { ProcessEntity } from 'src/datajud/infra/models/entities/process.entity';
-import { DeadLetterEntity } from 'src/deadLetter/infra/models/entities/deadLetter.entity';
+import { ProcessEntity } from 'src/models/datajud/infra/models/entities/process.entity';
+import { DeadLetterEntity } from 'src/models/deadLetter/infra/models/entities/deadLetter.entity';
 
-import type { IDeadLetterRepository } from 'src/deadLetter/domain/repositories/deadLetter.interface.repository';
-import type { IDataJudRepository } from 'src/datajud/domain/repositories/dataJud.interface.repository';
+import type { IDeadLetterRepository } from 'src/models/deadLetter/domain/repositories/deadLetter.interface.repository';
+import type { IDataJudRepository } from 'src/models/datajud/domain/repositories/dataJud.interface.repository';
 
 @Controller()
 export class DatajudConsumer {
