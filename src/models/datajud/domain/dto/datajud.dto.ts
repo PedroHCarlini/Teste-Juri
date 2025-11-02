@@ -3,8 +3,8 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class SearchProcessDto {
   @ApiProperty({
-    description: 'Número do processo',
-    example: '08012345620218260100',
+    description: 'Process number to be searched',
+    example: '00105765620225150093',
   })
   @IsString()
   @IsNotEmpty()

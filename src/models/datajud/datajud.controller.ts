@@ -1,4 +1,4 @@
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard } from 'src/models/auth/infra/guards/jwt-auth.guard';
@@ -10,6 +10,7 @@ export class DatajudController {
   constructor(private readonly datajudUsecase: DatajudUsecase) {}
 
   @Get()
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @ApiQuery({
     name: 'processNumber',
