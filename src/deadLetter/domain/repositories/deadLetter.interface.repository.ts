@@ -1,0 +1,5 @@
+import { DeadLetterEntity } from 'src/deadLetter/infra/models/entities/deadLetter.entity';
+
+export interface IDeadLetterRepository {
+  create(data: Partial<DeadLetterEntity>): Promise<DeadLetterEntity>;
+}

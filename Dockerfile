@@ -7,9 +7,6 @@ RUN npm install
 
 COPY . .
 
-COPY wait-for-it.sh /wait-for-it.sh
-RUN chmod +x /wait-for-it.sh
-
 EXPOSE 3000
 
-CMD ["/wait-for-it.sh", "kafka:9092", "--timeout=30", "--", "npm", "run", "start:dev"]
+CMD bash -c "sleep 20 && npm run start:dev"

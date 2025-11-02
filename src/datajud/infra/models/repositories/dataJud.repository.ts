@@ -18,7 +18,9 @@ export class DataJudRepositoryMongo implements IDataJudRepository {
 
   async search(processNumber: string): Promise<ProcessEntity[]> {
     return await this.dataJudRepository.find({
-      processNumber,
+      where: {
+        'hits.hits._source.numeroProcesso': processNumber,
+      },
     });
   }
 }

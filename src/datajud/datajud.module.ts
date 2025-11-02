@@ -15,6 +15,10 @@ import { DatajudConsumer } from 'src/kafka/datajud.consumer.service';
       provide: 'IDataJudRepository',
       useClass: DataJudRepositoryMongo,
     },
+    {
+      provide: 'IDeadLetterRepository',
+      useClass: DataJudRepositoryMongo,
+    },
     DatajudUsecase,
     DataJudProducerService,
   ],

@@ -50,7 +50,7 @@ export class DatajudUsecase {
 
       await this.dataJudProducerService.sendMessage('datajud-queue', message);
 
-      return 'Hello World!';
+      return 'Process request submitted! Please wait a moment and try again.';
     } catch (error) {
       console.error('Error fetching data from Datajud API:', error);
       throw error;

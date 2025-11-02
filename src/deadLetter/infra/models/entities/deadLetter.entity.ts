@@ -160,11 +160,7 @@ export class Hits {
   hits?: HitsArray[];
 }
 
-@Entity('processes')
-export class ProcessEntity {
-  @ObjectIdColumn()
-  _id: ObjectId;
-
+export class Process {
   @Column()
   took: number;
 
@@ -176,8 +172,20 @@ export class ProcessEntity {
 
   @Column(() => Hits)
   hits: Hits;
+}
 
-  constructor(partial?: Partial<ProcessEntity>) {
+@Entity('dead_letters')
+export class DeadLetterEntity {
+  @ObjectIdColumn()
+  _id: ObjectId;
+
+  @Column()
+  error: String;
+
+  @Column(() => Process)
+  message: Process;
+
+  constructor(partial?: Partial<DeadLetterEntity>) {
     Object.assign(this, partial);
   }
 }
