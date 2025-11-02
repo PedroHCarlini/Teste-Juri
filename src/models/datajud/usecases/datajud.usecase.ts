@@ -16,6 +16,10 @@ export class DatajudUsecase {
 
   async handler(processNumber: string): Promise<ProcessEntity[] | string> {
     try {
+      if (!processNumber) {
+        throw new Error('Process number is required');
+      }
+
       const processes = await this.dataJudRepository.search(processNumber);
 
       if (processes.length > 0) return processes;
