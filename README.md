@@ -97,7 +97,7 @@ Resposta:
 
 ```json
 {
-  "accessToken": "seu_jwt_aqui"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzeXN0ZW1fdXNlcl9pZCIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoic3lzdGVtIiwiaWF0IjoxNzYyMTIxODQ1LCJleHAiOjE3NjI3MjY2NDV9.Bwo_UdgzTIdKFfLfgXQFSdPiu3ppT27DKdXIFEKUzHo"
 }
 ```
 
